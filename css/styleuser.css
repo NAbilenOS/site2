@@ -1,0 +1,47 @@
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+    perspective: 1000px; /* Ajout de la perspective pour l'effet 3D */
+}
+
+.product {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-style: preserve-3d; /* Important pour l'effet 3D */
+    position: relative;
+    cursor: pointer;
+}
+
+.product:hover {
+    transform: 
+        rotateY(15deg) /* Rotation en 3D */
+        rotateX(5deg)
+        translateY(-15px)
+        scale(1.05);
+    box-shadow: 
+        0 25px 40px rgba(255, 0, 0, 0.2), /* Ombre rouge principale */
+        0 15px 12px rgba(255, 0, 0, 0.1); /* Seconde ombre pour profondeur */
+}
+
+.product::after {
+    content: '';
+    position: absolute;
+    width: 90%;
+    height: 40px;
+    background: rgba(255, 0, 0, 0.1);
+    bottom: -20px;
+    left: 5%;
+    filter: blur(15px);
+    z-index: -1;
+    transition: all 0.5s ease;
+}
+
+.product:hover::after {
+    transform: translateY(20px) scale(0.9);
+    opacity: 0.7;
+}
